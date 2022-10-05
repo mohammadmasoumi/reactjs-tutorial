@@ -9,6 +9,13 @@
 - installing nodejs
   https://nodejs.org/en/
 
+## VS code Extensions
+
+- Simple React Snippets
+
+- Prettier - Code formatter
+  Enable format on save
+
 ## Create react app
 
 ```
@@ -20,12 +27,4 @@ npm i -g create-react-app
 create-react-app react-app
 cd react-app
 npm start
-```
-
-## Extensions
-
-```
-Simple React Snippets
-Prettier - Code formatter
-Enable format on save
 ```
