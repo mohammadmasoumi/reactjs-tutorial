@@ -15,6 +15,11 @@
 # i: install
 # g: global
 npm i -g create-react-app
+
+# create app
+create-react-app react-app
+cd react-app
+npm start
 ```
 
 ## Extensions
