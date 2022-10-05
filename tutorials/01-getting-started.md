@@ -7,15 +7,13 @@
   - Component
   - HOC (High Order Component)
   - Real DOM VS Virtual DOM
-  - Babble (Javascript compiler)
+  - [Babble](https://babeljs.io/) (Javascript compiler)
   - Node module
   - npm (Nodejs package manager)
 
 ## Installation
 
-- Installing nodejs
-  https://nodejs.org/en/
-
+- Installing [nodejs](https://nodejs.org/en/)
 - Installing npm (node package manager)
 
 ## Create react app
