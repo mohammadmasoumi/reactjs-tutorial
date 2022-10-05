@@ -39,5 +39,4 @@ npm start
 
 - Simple React Snippets
 
-- Prettier - Code formatter
-  Enable format on save
+- Prettier - Code formatter (Enable format on save)
