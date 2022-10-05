@@ -3,8 +3,13 @@
 ## Getting started
 
 - The most popular framework.
-- What is component?
-- What is DOM and virtual-DOM?
+- Basic concept:
+  - Component
+  - HOC (High Order Component)
+  - Real DOM VS Virtual DOM
+  - Babble (Javascript compiler)
+  - Node module
+  - npm (Nodejs package manager)
 
 ## Installation
 
