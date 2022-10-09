@@ -54,24 +54,10 @@ class Counter extends Component {
 
     return (
       <div>
-        {/* <image src={this.state.image} alt="This is a simple image"></image> */}
-        {/* <h1>Hello world</h1> */}
-        {/* <div>How are you</div> */}
-        {/* <span style={this.styles} className="badge rounded-pill text-bg-primary m-2">{this.formatCount()}</span> */}
-
-        {/* setting attributes */}
-        <span
-          style={{ fontSize: 20, fontWeight: "bold" }}
-          className='badge rounded-pill text-bg-primary m-2'>
-          {this.formatCount()}
-        </span>
-        <button className='btn btn-secondary btn-sm'>Increment</button>
+        <h1>Hello world</h1>
+        <button>Increment</button>
       </div>
     );
-  }
-
-  formatCount() {
-    return this.state.count === 0 ? "Zero" : this.state.count;
   }
 }
 

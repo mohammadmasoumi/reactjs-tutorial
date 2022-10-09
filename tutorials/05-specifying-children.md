@@ -1,6 +1,9 @@
+# Specifying Children
+
+```react
+
 // imrc
-// import React, { Component, Fragment } from 'react';
-import React, { Component } from "react";
+import React, { Component, Fragment } from 'react';
 
 // cc
 // export default class Counter extends Component {
@@ -23,12 +26,12 @@ class Counter extends Component {
     /*
             The first element is type
 
-            createElement(type: "input", props?: (React.InputHTMLAttributes<HTMLInputElement> & 
-                React.ClassAttributes<HTMLInputElement>) | null | undefined, ...children: React.ReactNode[]): 
+            createElement(type: "input", props?: (React.InputHTMLAttributes<HTMLInputElement> &
+                React.ClassAttributes<HTMLInputElement>) | null | undefined, ...children: React.ReactNode[]):
                 React.DetailedReactHTMLElement<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
-        
+
             Problem:
-            
+
                 return (<h1>Hello world</h1><div>How are you</div>);
 
             Solution:
@@ -54,25 +57,13 @@ class Counter extends Component {
 
     return (
       <div>
-        {/* <image src={this.state.image} alt="This is a simple image"></image> */}
-        {/* <h1>Hello world</h1> */}
-        {/* <div>How are you</div> */}
-        {/* <span style={this.styles} className="badge rounded-pill text-bg-primary m-2">{this.formatCount()}</span> */}
-
-        {/* setting attributes */}
-        <span
-          style={{ fontSize: 20, fontWeight: "bold" }}
-          className='badge rounded-pill text-bg-primary m-2'>
-          {this.formatCount()}
-        </span>
-        <button className='btn btn-secondary btn-sm'>Increment</button>
+        <h1>Hello world</h1>
+        <button>Increment</button>
       </div>
     );
-  }
-
-  formatCount() {
-    return this.state.count === 0 ? "Zero" : this.state.count;
   }
 }
 
 export default Counter;
+
+```
