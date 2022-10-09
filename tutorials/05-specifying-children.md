@@ -1,9 +1,8 @@
 # Specifying Children
 
-```react
-
+```jsx
 // imrc
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from "react";
 
 // cc
 // export default class Counter extends Component {
@@ -65,5 +64,4 @@ class Counter extends Component {
 }
 
 export default Counter;
-
 ```
