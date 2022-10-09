@@ -40,7 +40,6 @@ class Counter extends Component {
                     );
         */
         
-        
         // ctrl + shift + l
         
         return (
