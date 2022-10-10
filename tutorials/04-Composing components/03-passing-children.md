@@ -48,6 +48,7 @@ class Counter extends Component {
 
     return (
       <div>
+        {this.props.children}
         <span className={this.getBadgeclasses()}>{this.formatCount()}</span>
         <button
           onClick={() => this.handleIncrement()}
@@ -93,13 +94,12 @@ class Counters extends Component {
     return (
       <div>
         {this.state.counters.map((item) => (
+          //   mostly use for dialogue component
           <Counter
             key={item.id}
-            value={item.value}
-            // below lines are equivalent.
-            // selected={true}
-            // selected
-          />
+            value={item.value}>
+            <h1>Counter #{item.id}</h1>
+          </Counter>
         ))}
       </div>
     );

@@ -15,14 +15,12 @@ class Counters extends Component {
     return (
       <div>
         {this.state.counters.map((item) => (
+          //   mostly use for dialogue component
           <Counter
             key={item.id}
-            value={item.value}
-            selected
-            // below lines are equivalent.
-            // selected={true}
-            // selected
-          />
+            value={item.value}>
+            <h1>Counter #{item.id}</h1>
+          </Counter>
         ))}
       </div>
     );
