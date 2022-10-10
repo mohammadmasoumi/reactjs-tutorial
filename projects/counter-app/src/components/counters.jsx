@@ -11,6 +11,11 @@ class Counters extends Component {
     ],
   };
 
+  handleDelete = (counterId) => {
+    const counters = this.state.counters.filter((c) => c.id !== counterId);
+    this.setState({ counters });
+  };
+
   render() {
     return (
       <div>
@@ -18,9 +23,9 @@ class Counters extends Component {
           //   mostly use for dialogue component
           <Counter
             key={item.id}
-            value={item.value}>
-            <h1>Counter #{item.id}</h1>
-          </Counter>
+            onDelete={this.handleDelete}
+            counter={item}
+          />
         ))}
       </div>
     );
