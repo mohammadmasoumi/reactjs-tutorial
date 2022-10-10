@@ -40,6 +40,11 @@ class Counter extends Component {
     console.log(`${btnNumber} has Clicked!`, this.state.count);
   }
 
+  // solution #3
+  handleIncrement3 = () => {
+    console.log("Increment Clicked!", this.state.count);
+  };
+
   render() {
     return (
       <div>
@@ -51,6 +56,11 @@ class Counter extends Component {
         </button>
         <button
           onClick={() => this.handleIncrement2(2)}
+          className='btn btn-secondary btn-sm'>
+          Increment
+        </button>
+        <button
+          onClick={this.handleIncrement3}
           className='btn btn-secondary btn-sm'>
           Increment
         </button>
