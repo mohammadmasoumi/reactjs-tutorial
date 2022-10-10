@@ -9,17 +9,32 @@ class Counter extends Component {
     tags: ["tag1", "tag2", "tag3"],
   };
 
+  renderTags() {
+    if (this.state.tags.length === 0) return <p>There is no tags!</p>;
+
+    return (
+      <ul>
+        {this.state.tags.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    );
+  }
+  /*
+    return the last operand 
+
+    - true && false 
+        flase
+    - true && 'Hi'
+        "Hi"
+    - true && 'Hi' && 1
+        1 
+   */
   render() {
     return (
       <div>
-        <span className={this.getBadgeclasses()}>{this.formatCount()}</span>
-        <button className='btn btn-secondary btn-sm'>Increment</button>
-        <ul>
-          {/* react-jsx-dev-runtime.development.js:87 Warning: Each child in a list should have a unique "key" prop. */}
-          {this.state.tags.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+        {this.state.tags.length === 0 && "Please create a new tag!"}
+        {this.renderTags()}
       </div>
     );
   }
