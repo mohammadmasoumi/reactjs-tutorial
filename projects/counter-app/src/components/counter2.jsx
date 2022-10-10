@@ -7,7 +7,7 @@ import React, { Component } from "react";
 class Counter extends Component {
   state = {
     count: 0,
-    // imageUrl: "https://picsum.photos/200"
+    imageUrl: "https://picsum.photos/200",
   };
 
   styles = {
@@ -16,48 +16,20 @@ class Counter extends Component {
   };
 
   render() {
-    // compile time
-    // React.createElement()
-    // return (<div>Hello world /div>)
-
-    /*
-            The first element is type
-
-            createElement(type: "input", props?: (React.InputHTMLAttributes<HTMLInputElement> & 
-                React.ClassAttributes<HTMLInputElement>) | null | undefined, ...children: React.ReactNode[]): 
-                React.DetailedReactHTMLElement<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
-        
-            Problem:
-            
-                return (<h1>Hello world</h1><div>How are you</div>);
-
-            Solution:
-
-                1. parent tag
-                    return (
-                        <div>
-                            <h1>Hello world</h1>
-                            <div>How are you</div>
-                        </div>
-                    );
-
-                2. React Fragment
-                    return (
-                        <Fragment>
-                            <h1>Hello world</h1>
-                            <div>How are you</div>
-                        </Fragment>
-                    );
-        */
-
-    // ctrl + shift + l
-
     return (
       <div>
-        <h1>Hello world</h1>
+        <img
+          src={this.state.imageUrl}
+          alt='Image'></img>
+        <span className='badge bg-primary m-2'>{this.stats.count}</span>
         <button>Increment</button>
       </div>
     );
+  }
+
+  formatCount() {
+    const { count } = this.state;
+    return count === 0 ? "Zero" : count;
   }
 }
 
