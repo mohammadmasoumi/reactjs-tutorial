@@ -12,7 +12,10 @@ class Counter extends Component {
   };
 
   handleIncrement() {
+    // solution #1
     // this.setState({ count: this.state.count + 1 });
+
+    // solution #2
     // object destructure
     let { count } = this.state;
     count += 1;

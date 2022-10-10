@@ -1,11 +1,21 @@
+# Passing Event Arguements
+
+```jsx
+// imrc
 import React, { Component } from "react";
 
+// cc
+// export default class Counter extends Component {
 class Counter extends Component {
   state = {
     count: 0,
   };
 
-  handleIncrement() {
+  handleIncrement(argument) {
+    console.log(`You passed ${argument}`);
+
+    // this.setState({ count: this.state.count + 1 });
+    // object destructure
     let { count } = this.state;
     count += 1;
     this.setState({ count });
@@ -16,7 +26,7 @@ class Counter extends Component {
       <div>
         <span className={this.getBadgeclasses()}>{this.formatCount()}</span>
         <button
-          onClick={() => this.handleIncrement()}
+          onClick={() => this.handleIncrement("argument")}
           className='btn btn-secondary btn-sm'>
           Increment
         </button>
@@ -37,3 +47,4 @@ class Counter extends Component {
 }
 
 export default Counter;
+```
