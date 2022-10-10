@@ -19,7 +19,7 @@ class Counter extends Component {
 
   render() {
     // compile time
-    // React.createElement()
+    // React.createElement('div')
     // return (<div>Hello world /div>)
 
     /*

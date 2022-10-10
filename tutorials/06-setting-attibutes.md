@@ -19,7 +19,6 @@ class Counter extends Component {
   };
 
   render() {
-    console.log("Hello");
     return (
       <div>
         {/* <img
