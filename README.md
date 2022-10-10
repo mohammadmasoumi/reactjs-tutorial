@@ -11,7 +11,7 @@ This project is an open-source project which I made due to sharing my experience
 
 ## Dependencies
 
-- [bootstrap][20]
+- [bootstrap-5.2.2][20]
 
 ## Projects
 
