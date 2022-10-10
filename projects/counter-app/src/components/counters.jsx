@@ -11,6 +11,12 @@ class Counters extends Component {
     ],
   };
 
+  // this doesn't work unless Counter component remove it's local state
+  handleReset = () => {
+    const counters = this.state.counters.map((c) => ({ id: c.id, value: 0 }));
+    this.setState({ counters });
+  };
+
   handleDelete = (counterId) => {
     const counters = this.state.counters.filter((c) => c.id !== counterId);
     this.setState({ counters });
@@ -19,8 +25,12 @@ class Counters extends Component {
   render() {
     return (
       <div>
+        <button
+          onClick={this.handleReset}
+          className='btn btn-primary btn-sm m-2'>
+          Reset
+        </button>
         {this.state.counters.map((item) => (
-          //   mostly use for dialogue component
           <Counter
             key={item.id}
             onDelete={this.handleDelete}

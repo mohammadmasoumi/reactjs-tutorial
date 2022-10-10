@@ -1,4 +1,4 @@
-# Raising and Handling Events
+# Single Source Of Truth
 
 ## index.js
 
@@ -48,6 +48,7 @@ class Counter extends Component {
           className='btn btn-secondary btn-sm m-2'>
           Increment
         </button>
+        {/* button.btn.btn-danger.btn-sm */}
         <button
           onClick={() => this.props.onDelete(this.props.counter.id)}
           className='btn btn-danger btn-sm m-2'>
@@ -88,6 +89,12 @@ class Counters extends Component {
     ],
   };
 
+  // this doesn't work unless Counter component remove it's local state
+  handleReset = () => {
+    const counters = this.state.counters.map((c) => ({ id: c.id, value: 0 }));
+    this.setState({ counters });
+  };
+
   handleDelete = (counterId) => {
     const counters = this.state.counters.filter((c) => c.id !== counterId);
     this.setState({ counters });
@@ -96,6 +103,11 @@ class Counters extends Component {
   render() {
     return (
       <div>
+        <button
+          onClick={this.handleReset}
+          className='btn btn-primary btn-sm m-2'>
+          Reset
+        </button>
         {this.state.counters.map((item) => (
           <Counter
             key={item.id}
