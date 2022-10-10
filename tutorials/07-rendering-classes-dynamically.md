@@ -1,3 +1,6 @@
+# Rendering Classes Dynamically
+
+```jsx
 // imrc
 import React, { Component } from "react";
 
@@ -6,7 +9,6 @@ import React, { Component } from "react";
 class Counter extends Component {
   state = {
     count: 0,
-    tags: ["tag1", "tag2", "tag3"],
   };
 
   render() {
@@ -14,12 +16,6 @@ class Counter extends Component {
       <div>
         <span className={this.getBadgeclasses()}>{this.formatCount()}</span>
         <button className='btn btn-secondary btn-sm'>Increment</button>
-        <ul>
-          {/* react-jsx-dev-runtime.development.js:87 Warning: Each child in a list should have a unique "key" prop. */}
-          {this.state.tags.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
       </div>
     );
   }
@@ -37,3 +33,4 @@ class Counter extends Component {
 }
 
 export default Counter;
+```
