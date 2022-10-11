@@ -1,36 +1,27 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Navbar extends Component {
-  state = {};
-  render() {
-    return (
-      <nav className='navbar navbar-light bg-light'>
-        <a
-          className='navbar-brand'
-          href='#'>
-          Navbar
-          <span className={this.getBadgeClasses()}>
-            {this.props.totalCounters}
-          </span>
-        </a>
-      </nav>
-    );
-  }
-
-  getBadgeClasses() {
+// sfc
+// stateless functional component
+const Navbar = ({ totalCounters }) => {
+  const getBadgeClasses = () => {
     let classes = "badge rounded-pill text-bg-";
 
     classes +=
-      this.props.totalCounters === 0
-        ? "danger"
-        : this.props.totalCounters < 2
-        ? "warning"
-        : "info";
-
-    console.log(classes);
+      totalCounters === 0 ? "danger" : totalCounters < 2 ? "warning" : "info";
 
     return classes;
-  }
-}
+  };
+
+  return (
+    <nav className='navbar navbar-light bg-light'>
+      <a
+        className='navbar-brand'
+        href='#'>
+        Navbar
+        <span className={getBadgeClasses()}>{totalCounters}</span>
+      </a>
+    </nav>
+  );
+};
 
 export default Navbar;
