@@ -80,11 +80,16 @@ class Counters extends Component {
 
   // this doesn't work unless Counter component remove it's local state
   handleReset = () => {
-    const counters = this.state.counters.map((c) => ({ id: c.id, value: 0 }));
+    const counters = this.state.counters.map((c) => ({ ...c, value: 0 }));
     this.setState({ counters });
   };
 
   handleIncrement = (counter) => {
+    // const counters = [...this.state.counters];
+    // const index = counter.id;
+    // counters[index] = { ...counter };
+    // counters[index].value++;
+
     const counters = this.state.counters.map((c) =>
       c.id === counter.id ? { ...c, value: c.value + 1 } : { ...c }
     );
