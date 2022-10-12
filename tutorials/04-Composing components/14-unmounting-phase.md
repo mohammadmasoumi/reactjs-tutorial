@@ -1,4 +1,4 @@
-# Mount Phase
+# Unmount Phase
 
 ## index.js
 
