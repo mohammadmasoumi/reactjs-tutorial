@@ -1,5 +1,3 @@
-# Lifting The State Up
-
 # Multiple Component In Sync
 
 ## index.js

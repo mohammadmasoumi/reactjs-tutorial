@@ -6,6 +6,8 @@ a component during it's lifecycle go into some phases.
 2. update
 3. unmount
 
+> When a component gets update, all it's children are going to re-render.
+
 ## MOUNT
 
 - constructor

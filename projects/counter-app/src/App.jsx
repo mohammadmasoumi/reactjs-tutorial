@@ -16,9 +16,12 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    console.log()
-    this.state = this.props.something
+    console.log("App - constructor!");
+    this.state = this.props.something;
+  }
 
+  componentDidMount() {
+    console.log("App - componentDidMount!");
   }
 
   // this doesn't work unless Counter component remove it's local state
@@ -45,6 +48,7 @@ class App extends Component {
   };
 
   render() {
+    console.log("App - render!");
     return (
       <Fragment>
         {/* this.state.counters.length */}
