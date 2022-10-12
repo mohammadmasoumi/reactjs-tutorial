@@ -2,6 +2,8 @@ import React from "react";
 
 // destructure props
 const Counter = ({ counter, onIncrement, onDelete }) => {
+  console.log("Counter - Rendered!");
+
   const getBadgeclasses = () => {
     let classes = "badge m-2 bg-";
     classes += counter.value === 0 ? "warning" : "primary";

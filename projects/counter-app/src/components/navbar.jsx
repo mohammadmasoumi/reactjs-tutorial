@@ -3,6 +3,8 @@ import React from "react";
 // sfc
 // stateless functional component
 const Navbar = ({ totalCounters }) => {
+  console.log("Navbar - Rendered!");
+
   const getBadgeClasses = () => {
     let classes = "badge rounded-pill text-bg-";
 

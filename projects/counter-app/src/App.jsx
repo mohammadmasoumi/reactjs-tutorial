@@ -14,6 +14,13 @@ class App extends Component {
     ],
   };
 
+  constructor(props) {
+    super(props);
+    console.log()
+    this.state = this.props.something
+
+  }
+
   // this doesn't work unless Counter component remove it's local state
   handleReset = () => {
     const counters = this.state.counters.map((c) => ({ ...c, value: 0 }));

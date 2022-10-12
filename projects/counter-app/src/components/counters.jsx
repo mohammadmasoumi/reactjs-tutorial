@@ -2,6 +2,8 @@ import React from "react";
 import Counter from "./counter";
 
 const Counters = ({ counters, onReset, onDelete, onIncrement }) => {
+  console.log("Counters - Rendered!");
+
   return (
     <div>
       <button
