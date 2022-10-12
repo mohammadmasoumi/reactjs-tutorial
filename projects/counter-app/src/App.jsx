@@ -25,6 +25,10 @@ class App extends Component {
     console.log("App - componentDidMount!");
   }
 
+  componentDidUpdate() {
+    console.log("App - componentDidUpdate!");
+  }
+
   // this doesn't work unless Counter component remove it's local state
   handleReset = () => {
     const counters = this.state.counters.map((c) => ({ ...c, value: 0 }));
