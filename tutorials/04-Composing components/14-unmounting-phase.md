@@ -213,16 +213,3 @@ const Navbar = ({ totalCounters }) => {
 
 export default Navbar;
 ```
-
-## Output
-
-```txt
-App - render!
-Navbar - Rendered!
-Counters - Rendered!
-Counter - Rendered!
-Counter - Rendered!
-Counter - Rendered!
-Counter - Rendered!
-App - componentDidUpdate!
-```

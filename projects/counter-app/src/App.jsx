@@ -14,32 +14,6 @@ class App extends Component {
     ],
   };
 
-  constructor(props) {
-    super(props);
-    console.log("App - constructor!");
-    // this.state = this.props.something;
-    this.state = this.state;
-  }
-
-  componentDidMount() {
-    console.log("App - componentDidMount!");
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log("App - componentDidUpdate!");
-    console.log("prevProps", prevProps);
-    console.log("preState", prevState);
-
-    if (prevProps.counters.length !== this.props.counters.length) {
-      console.log("Ajax call and get new data from server!");
-    }
-  }
-
-  componentWillUnmount() {
-    // clean up
-  }
-
-  // this doesn't work unless Counter component remove it's local state
   handleReset = () => {
     const counters = this.state.counters.map((c) => ({ ...c, value: 0 }));
     this.setState({ counters });
@@ -52,16 +26,21 @@ class App extends Component {
     this.setState({ counters });
   };
 
+  handleDecrement = (counter) => {
+    const counters = this.state.counters.map((c) =>
+      c.id === counter.id ? { ...c, value: c.value - 1 } : { ...c }
+    );
+    this.setState({ counters });
+  };
+
   handleDelete = (counter) => {
     const counters = this.state.counters.filter((c) => c.id !== counter.id);
     this.setState({ counters });
   };
 
   render() {
-    console.log("App - render!");
     return (
       <Fragment>
-        {/* this.state.counters.length */}
         <Navbar
           totalCounters={this.state.counters.filter((c) => c.value > 0).length}
         />
@@ -70,6 +49,7 @@ class App extends Component {
             counters={this.state.counters}
             onReset={this.handleReset}
             onIncrement={this.handleIncrement}
+            onDecrement={this.handleDecrement}
             onDelete={this.handleDelete}
           />
         </main>

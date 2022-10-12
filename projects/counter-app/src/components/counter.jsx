@@ -1,11 +1,8 @@
 import React from "react";
 
-// destructure props
-const Counter = ({ counter, onIncrement, onDelete }) => {
-  console.log("Counter - Rendered!");
-
+const Counter = ({ counter, onIncrement, onDecrement, onDelete }) => {
   const getBadgeclasses = () => {
-    let classes = "badge m-2 bg-";
+    let classes = "badge bg-lg bg-";
     classes += counter.value === 0 ? "warning" : "primary";
     return classes;
   };
@@ -16,18 +13,31 @@ const Counter = ({ counter, onIncrement, onDelete }) => {
   };
 
   return (
-    <div>
-      <span className={getBadgeclasses()}>{formatCount()}</span>
-      <button
-        onClick={() => onIncrement(counter)}
-        className='btn btn-secondary btn-sm m-2'>
-        Increment
-      </button>
-      <button
-        onClick={() => onDelete(counter)}
-        className='btn btn-danger btn-sm m-2'>
-        Delete
-      </button>
+    <div className='row'>
+      {/* div.col-1+div.col */}
+      <div className='col-1'>
+        <h2>
+          <span className={getBadgeclasses()}>{formatCount()}</span>
+        </h2>
+      </div>
+      <div className='col'>
+        <button
+          onClick={() => onIncrement(counter)}
+          className='btn btn-secondary btn-lg m-1'>
+          +
+        </button>
+        <button
+          onClick={() => onDecrement(counter)}
+          className='btn btn-secondary btn-lg m-1'
+          disabled={counter.value === 0}>
+          -
+        </button>
+        <button
+          onClick={() => onDelete(counter)}
+          className='btn btn-danger btn-lg m-1'>
+          Delete
+        </button>
+      </div>
     </div>
   );
 };
