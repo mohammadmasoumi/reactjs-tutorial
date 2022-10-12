@@ -53,8 +53,14 @@ class App extends Component {
     console.log("App - componentDidMount!");
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     console.log("App - componentDidUpdate!");
+    console.log("prevProps", prevProps);
+    console.log("preState", prevState);
+
+    if (prevProps.counters.length !== this.props.counters.length) {
+      console.log("Ajax call and get new data from server!");
+    }
   }
 
   // this doesn't work unless Counter component remove it's local state
