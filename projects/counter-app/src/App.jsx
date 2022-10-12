@@ -17,7 +17,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     console.log("App - constructor!");
-    this.state = this.props.something;
+    // this.state = this.props.something;
+    this.state = this.state;
   }
 
   componentDidMount() {
@@ -31,11 +32,6 @@ class App extends Component {
   };
 
   handleIncrement = (counter) => {
-    // const counters = [...this.state.counters];
-    // const index = counter.id;
-    // counters[index] = { ...counter };
-    // counters[index].value++;
-
     const counters = this.state.counters.map((c) =>
       c.id === counter.id ? { ...c, value: c.value + 1 } : { ...c }
     );

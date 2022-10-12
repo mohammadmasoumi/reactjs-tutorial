@@ -49,11 +49,6 @@ class App extends Component {
   };
 
   handleIncrement = (counter) => {
-    // const counters = [...this.state.counters];
-    // const index = counter.id;
-    // counters[index] = { ...counter };
-    // counters[index].value++;
-
     const counters = this.state.counters.map((c) =>
       c.id === counter.id ? { ...c, value: c.value + 1 } : { ...c }
     );
@@ -185,4 +180,18 @@ const Navbar = ({ totalCounters }) => {
 };
 
 export default Navbar;
+```
+
+## Output
+
+```txt
+App - constructor!
+App - render!
+navbar Navbar - Rendered!
+counters Counters - Rendered!
+counter Counter - Rendered!
+counter Counter - Rendered!
+counter Counter - Rendered!
+counter Counter - Rendered!
+App - componentDidMount!
 ```
