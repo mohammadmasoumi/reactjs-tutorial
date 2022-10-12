@@ -42,6 +42,17 @@ class App extends Component {
     ],
   };
 
+  constructor(props) {
+    super(props);
+    console.log("App - constructor!");
+    // this.state = this.props.something;
+    this.state = this.state;
+  }
+
+  componentDidMount() {
+    console.log("App - componentDidMount!");
+  }
+
   // this doesn't work unless Counter component remove it's local state
   handleReset = () => {
     const counters = this.state.counters.map((c) => ({ ...c, value: 0 }));
@@ -61,6 +72,7 @@ class App extends Component {
   };
 
   render() {
+    console.log("App - render!");
     return (
       <Fragment>
         {/* this.state.counters.length */}
@@ -90,6 +102,8 @@ import React from "react";
 
 // destructure props
 const Counter = ({ counter, onIncrement, onDelete }) => {
+  console.log("Counter - Rendered!");
+
   const getBadgeclasses = () => {
     let classes = "badge m-2 bg-";
     classes += counter.value === 0 ? "warning" : "primary";
@@ -128,6 +142,8 @@ import React from "react";
 import Counter from "./counter";
 
 const Counters = ({ counters, onReset, onDelete, onIncrement }) => {
+  console.log("Counters - Rendered!");
+
   return (
     <div>
       <button
@@ -158,6 +174,8 @@ import React from "react";
 // sfc
 // stateless functional component
 const Navbar = ({ totalCounters }) => {
+  console.log("Navbar - Rendered!");
+
   const getBadgeClasses = () => {
     let classes = "badge rounded-pill text-bg-";
 
