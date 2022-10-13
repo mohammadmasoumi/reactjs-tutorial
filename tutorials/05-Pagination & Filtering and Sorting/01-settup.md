@@ -6,6 +6,12 @@
 create-react-app movie-app
 ```
 
+## Fontawesome
+
+Create account on [font-awesome](https://fontawesome.com/icons).
+
+> Add font-awesome script into `public/index.html`
+
 ## Dependencies
 
 ```bash
