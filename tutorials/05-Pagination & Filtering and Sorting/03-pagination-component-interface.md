@@ -1,3 +1,29 @@
+# Pagination Component Interface
+
+## App.jsx
+
+```jsx
+import React, { Component } from "react";
+import Movies from "./components/movies";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.css";
+
+class App extends Component {
+  render() {
+    return (
+      <main className='container'>
+        <Movies />
+      </main>
+    );
+  }
+}
+
+export default App;
+```
+
+## Movie.jsx
+
+```jsx
 import React, { Component } from "react";
 import Liked from "./commons/liked";
 import Pagination from "./commons/pagination";
@@ -82,3 +108,41 @@ class Movies extends Component {
 }
 
 export default Movies;
+```
+
+## Pagination
+
+```jsx
+import React from "react";
+
+const Pagination = ({ itemsCount, pageSize, onPageChange }) => {
+  // detemine component interface
+  return null;
+};
+
+export default Pagination;
+```
+
+## Like.jsx
+
+```jsx
+import React from "react";
+
+const Liked = ({ item: movie, onLike }) => {
+  // icons => fa-solid
+  // icons-o(empty) => fa-regular
+  const getIconClasses = () => {
+    let classes = movie.liked ? "fa-regular" : "fa-solid";
+    classes += " fa-heart";
+    return classes;
+  };
+  return (
+    <i
+      onClick={() => onLike(movie)}
+      style={{ cursor: "pointer" }}
+      className={getIconClasses()}></i>
+  );
+};
+
+export default Liked;
+```
