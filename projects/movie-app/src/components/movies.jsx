@@ -3,11 +3,11 @@ import { getMovies } from "../services/fakeMovieService";
 
 class Movies extends Component {
   state = {
-    movies: getMovies()
+    movies: getMovies(),
   };
 
-  handleDelete = movie => {
-    const movies = this.state.movies.filter(m => m._id !== movie._id);
+  handleDelete = (movie) => {
+    const movies = this.state.movies.filter((m) => m._id !== movie._id);
     this.setState({ movies });
   };
 
@@ -19,7 +19,7 @@ class Movies extends Component {
     return (
       <React.Fragment>
         <p>Showing {count} movies in the database.</p>
-        <table className="table">
+        <table className='table'>
           <thead>
             <tr>
               <th>Title</th>
@@ -30,7 +30,7 @@ class Movies extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.movies.map(movie => (
+            {this.state.movies.map((movie) => (
               <tr key={movie._id}>
                 <td>{movie.title}</td>
                 <td>{movie.genre.name}</td>
@@ -39,8 +39,7 @@ class Movies extends Component {
                 <td>
                   <button
                     onClick={() => this.handleDelete(movie)}
-                    className="btn btn-danger btn-sm"
-                  >
+                    className='btn btn-danger btn-sm'>
                     Delete
                   </button>
                 </td>
