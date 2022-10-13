@@ -13,6 +13,7 @@ This project is an open-source project which I made due to sharing my experience
 ## Dependencies
 
 - [bootstrap-5.2.2][20]
+- [font-awesome-6.2.0][21]
 
 ## Projects
 
@@ -25,5 +26,6 @@ This project is an open-source project which I made due to sharing my experience
 [4]: https://github.com/mohammadmasoumi/reactjs-tutorial/tree/master/tutorials/04-Composing%20components
 [5]: https://github.com/mohammadmasoumi/reactjs-tutorial/tree/master/tutorials/05-Pagination%20%26%20Filtering%20and%20Sorting
 [20]: https://getbootstrap.com/
+[21]: https://fontawesome.com/
 [30]: https://github.com/mohammadmasoumi/reactjs-tutorial/tree/master/projects/counter-app
 [31]: https://github.com/mohammadmasoumi/reactjs-tutorial/tree/master/projects/movie-app
