@@ -1,4 +1,4 @@
-# Pagination Component Interface
+# Pagination Displaying Pages
 
 ## Dependencies
 
