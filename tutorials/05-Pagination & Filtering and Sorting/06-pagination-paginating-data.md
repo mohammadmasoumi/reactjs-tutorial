@@ -1,4 +1,4 @@
-# Pagination handling Page Changes
+# Pagination Paginating data
 
 ## Dependencies
 
