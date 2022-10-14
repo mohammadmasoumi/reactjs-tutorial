@@ -32,7 +32,6 @@ import { getMovies } from "../services/fakeMovieService";
 class Movies extends Component {
   state = {
     movies: getMovies(),
-    currentPage: 1,
     pageSize: 4,
   };
 
@@ -51,12 +50,11 @@ class Movies extends Component {
   };
 
   handlePageChange = () => {
-    const { currentPage } = this.state;
-    this.setState({ currentPage });
+    console.log("handlePageChange Called!");
   };
 
   render() {
-    const { movies, pageSize, currentPage } = this.state;
+    const { movies, pageSize } = this.state;
     const { length: count } = movies;
 
     if (count === 0) return <p>There are no movies in the database.</p>;
@@ -102,7 +100,6 @@ class Movies extends Component {
         <Pagination
           itemsCount={count}
           pageSize={pageSize}
-          currentPage={currentPage}
           onPageChange={this.handlePageChange}
         />
       </React.Fragment>
@@ -119,7 +116,7 @@ export default Movies;
 import React from "react";
 import _ from "lodash";
 
-const Pagination = ({ itemsCount, pageSize, currentPage, onPageChange }) => {
+const Pagination = ({ itemsCount, pageSize, onPageChange }) => {
   const pagesCount = Math.ceil(itemsCount / pageSize);
   if (pagesCount === 1) return null;
   const pages = _.range(1, pagesCount + 1);
@@ -134,12 +131,8 @@ const Pagination = ({ itemsCount, pageSize, currentPage, onPageChange }) => {
         {pages.map((page) => (
           <li
             key={page}
-            className={currentPage === page ? "page-item active" : "page-item"}>
-            <a
-              onClick={() => onPageChange(page)}
-              className='page-link'>
-              {page}
-            </a>
+            className='page-item'>
+            <a className='page-link'>{page}</a>
           </li>
         ))}
         <li className='page-item'>
