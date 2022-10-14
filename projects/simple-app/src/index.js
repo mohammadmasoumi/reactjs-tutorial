@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import CustomTable from './components/table';
+// import CustomTable from './components/table';
+// import Counters from './components/counters';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 // React.createElement("<a>")
@@ -11,7 +12,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <Counter /> */}
-    <CustomTable />
+    <App />
   </React.StrictMode>
 );
 
