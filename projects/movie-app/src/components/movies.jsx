@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Liked from "./commons/liked";
 import Pagination from "./commons/pagination";
 import { getMovies } from "../services/fakeMovieService";
+import { paginate } from "../utils/paginate";
 
 class Movies extends Component {
   state = {
@@ -24,14 +25,14 @@ class Movies extends Component {
     this.setState({ movies });
   };
 
-  handlePageChange = () => {
-    const { currentPage } = this.state;
-    this.setState({ currentPage });
+  handlePageChange = (page) => {
+    this.setState({ currentPage: page });
   };
 
   render() {
-    const { movies, pageSize, currentPage } = this.state;
-    const { length: count } = movies;
+    const { length: count } = this.state.movies;
+    const { movies: allMovies, pageSize, currentPage } = this.state;
+    const movies = paginate(allMovies, currentPage, pageSize);
 
     if (count === 0) return <p>There are no movies in the database.</p>;
 
@@ -50,7 +51,7 @@ class Movies extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.movies.map((movie) => (
+            {movies.map((movie) => (
               <tr key={movie._id}>
                 <td>{movie.title}</td>
                 <td>{movie.genre.name}</td>

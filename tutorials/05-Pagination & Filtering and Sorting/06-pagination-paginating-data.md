@@ -1,5 +1,11 @@
 # Pagination handling Page Changes
 
+## Dependencies
+
+```bash
+npm i lodash
+```
+
 ## App.jsx
 
 ```jsx
@@ -28,10 +34,12 @@ import React, { Component } from "react";
 import Liked from "./commons/liked";
 import Pagination from "./commons/pagination";
 import { getMovies } from "../services/fakeMovieService";
+import { paginate } from "../utils/paginate";
 
 class Movies extends Component {
   state = {
     movies: getMovies(),
+    currentPage: 1,
     pageSize: 4,
   };
 
@@ -49,13 +57,14 @@ class Movies extends Component {
     this.setState({ movies });
   };
 
-  handlePageChange = () => {
-    console.log("handlePageChange Called!");
+  handlePageChange = (page) => {
+    this.setState({ currentPage: page });
   };
 
   render() {
-    const { movies, pageSize } = this.state;
-    const { length: count } = movies;
+    const { length: count } = this.state.movies;
+    const { movies: allMovies, pageSize, currentPage } = this.state;
+    const movies = paginate(allMovies, currentPage, pageSize);
 
     if (count === 0) return <p>There are no movies in the database.</p>;
 
@@ -74,7 +83,7 @@ class Movies extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.movies.map((movie) => (
+            {movies.map((movie) => (
               <tr key={movie._id}>
                 <td>{movie.title}</td>
                 <td>{movie.genre.name}</td>
@@ -100,6 +109,7 @@ class Movies extends Component {
         <Pagination
           itemsCount={count}
           pageSize={pageSize}
+          currentPage={currentPage}
           onPageChange={this.handlePageChange}
         />
       </React.Fragment>
@@ -116,27 +126,48 @@ export default Movies;
 import React from "react";
 import _ from "lodash";
 
-const Pagination = ({ itemsCount, pageSize, onPageChange }) => {
+const Pagination = ({ itemsCount, pageSize, currentPage, onPageChange }) => {
   const pagesCount = Math.ceil(itemsCount / pageSize);
+
   if (pagesCount === 1) return null;
-  const pages = _.range(1, pagesCount + 1);
+
   // [1 ... pagesCount].map()
+  const pages = _.range(1, pagesCount + 1);
+
+  const getNextAndPreviousClasses = (name) => {
+    const isDisabled =
+      name === "next" ? currentPage === pagesCount : currentPage === 1;
+
+    return isDisabled ? "page-item disabled" : "page-item";
+  };
 
   return (
     <nav aria-label='Page navigation example'>
       <ul className='pagination'>
-        <li className='page-item'>
-          <a className='page-link'>Previous</a>
+        <li className={getNextAndPreviousClasses("previous")}>
+          <a
+            onClick={() => onPageChange(currentPage - 1)}
+            className='page-link'>
+            Previous
+          </a>
         </li>
         {pages.map((page) => (
           <li
             key={page}
-            className='page-item'>
-            <a className='page-link'>{page}</a>
+            className={currentPage === page ? "page-item active" : "page-item"}>
+            <a
+              onClick={() => onPageChange(page)}
+              className='page-link'>
+              {page}
+            </a>
           </li>
         ))}
-        <li className='page-item'>
-          <a className='page-link'>Next</a>
+        <li className={getNextAndPreviousClasses("next")}>
+          <a
+            onClick={() => onPageChange(currentPage + 1)}
+            className='page-link'>
+            Next
+          </a>
         </li>
       </ul>
     </nav>
@@ -146,26 +177,20 @@ const Pagination = ({ itemsCount, pageSize, onPageChange }) => {
 export default Pagination;
 ```
 
-## Like.jsx
+## utils/paginate.jsx
 
 ```jsx
-import React from "react";
+import _ from "lodash";
 
-const Liked = ({ item: movie, onLike }) => {
-  // icons => fa-solid
-  // icons-o(empty) => fa-regular
-  const getIconClasses = () => {
-    let classes = movie.liked ? "fa-regular" : "fa-solid";
-    classes += " fa-heart";
-    return classes;
-  };
-  return (
-    <i
-      onClick={() => onLike(movie)}
-      style={{ cursor: "pointer" }}
-      className={getIconClasses()}></i>
-  );
-};
+export function paginate(items, pageNumber, pageSize) {
+  const startIndex = (pageNumber - 1) * pageSize;
 
-export default Liked;
+  // lodash object
+  // _(items)
+
+  // object list
+  // .value()
+
+  return _(items).slice(startIndex).take(pageSize).value();
+}
 ```
