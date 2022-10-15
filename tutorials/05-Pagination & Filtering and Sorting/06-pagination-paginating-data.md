@@ -6,7 +6,7 @@
 npm i lodash
 ```
 
-## App.jsx
+## App
 
 ```jsx
 import React, { Component } from "react";
@@ -27,7 +27,7 @@ class App extends Component {
 export default App;
 ```
 
-## Movie.jsx
+## Movies
 
 ```jsx
 import React, { Component } from "react";
@@ -177,7 +177,7 @@ const Pagination = ({ itemsCount, pageSize, currentPage, onPageChange }) => {
 export default Pagination;
 ```
 
-## utils/paginate.jsx
+## Paginate
 
 ```jsx
 import _ from "lodash";

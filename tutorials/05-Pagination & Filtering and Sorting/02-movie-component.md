@@ -1,6 +1,6 @@
 # Movie Component
 
-## App.jsx
+## App
 
 ```jsx
 import React, { Component } from "react";
@@ -21,7 +21,7 @@ class App extends Component {
 export default App;
 ```
 
-## Movie.jsx
+## Movies
 
 ```jsx
 import React, { Component } from "react";
@@ -98,7 +98,7 @@ class Movies extends Component {
 export default Movies;
 ```
 
-## Like.jsx
+## Like
 
 ```jsx
 import React from "react";

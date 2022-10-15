@@ -9,7 +9,7 @@ npm i prop-types
 
 > [Typechecking With PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
 
-## App.jsx
+## App
 
 ```jsx
 import React, { Component } from "react";
@@ -30,7 +30,7 @@ class App extends Component {
 export default App;
 ```
 
-## Movie.jsx
+## Movies
 
 ```jsx
 import React, { Component } from "react";
@@ -189,7 +189,7 @@ Pagination.propTypes = {
 export default Pagination;
 ```
 
-## utils/paginate.jsx
+## Paginate
 
 ```jsx
 import _ from "lodash";
