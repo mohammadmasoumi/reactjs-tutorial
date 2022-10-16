@@ -7,7 +7,7 @@ npm i lodash
 npm i prop-types
 ```
 
-## App.jsx
+## App
 
 ```jsx
 import React, { Component } from "react";
@@ -28,7 +28,7 @@ class App extends Component {
 export default App;
 ```
 
-## Movie.jsx
+## Movies
 
 ```jsx
 import React, { Component } from "react";
