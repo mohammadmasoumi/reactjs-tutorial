@@ -73,10 +73,6 @@ class Movies extends Component {
     this.setState({ currentPage: page });
   };
 
-  handleItemSelect = (genre) => {
-    console.log(genre);
-  };
-
   render() {
     const { length: count } = this.state.movies;
     const { movies: allMovies, genres, pageSize, currentPage } = this.state;
@@ -90,10 +86,7 @@ class Movies extends Component {
         {/* div.row>div.col-2+div.col */}
         <div className='row'>
           <div className='col-2'>
-            <ListGroup
-              items={genres}
-              onItemSelect={this.handleItemSelect}
-            />
+            <ListGroup items={genres} />
           </div>
           <div className='col'>
             <table className='table'>
@@ -230,7 +223,7 @@ import React from "react";
 import _ from "lodash";
 
 // component interface
-const ListGroup = ({ items, textProperty, valueProperty, onItemSelect }) => {
+const ListGroup = ({ items, textProperty, valueProperty }) => {
   // ul.list-group>li.list-group-item
 
   return (
@@ -238,7 +231,6 @@ const ListGroup = ({ items, textProperty, valueProperty, onItemSelect }) => {
       {items.map((item) => (
         <li
           key={_.get(item, valueProperty)}
-          onClick={() => onItemSelect(item)}
           className='list-group-item'>
           {_.get(item, textProperty)}
         </li>
