@@ -27,6 +27,7 @@ const ListGroup = ({
   );
 };
 
+// be careful with the spelling
 ListGroup.defaultProps = {
   textProperty: "name",
   valueProperty: "_id",
