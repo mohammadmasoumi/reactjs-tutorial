@@ -78,7 +78,6 @@ class Movies extends Component {
   };
 
   render() {
-    const { length: count } = this.state.movies;
     const {
       movies: allMovies,
       genres,
@@ -86,14 +85,18 @@ class Movies extends Component {
       currentPage,
       selectedGenre,
     } = this.state;
-    const movies = paginate(allMovies, currentPage, pageSize);
 
-    if (count === 0) return <p>There are no movies in the database.</p>;
+    const filteredMovies = selectedGenre
+      ? allMovies.filter((movie) => movie.genre._id === selectedGenre._id)
+      : allMovies;
+
+    const movies = paginate(filteredMovies, currentPage, pageSize);
+
+    if (movies.length === 0) return <p>There are no movies in the database.</p>;
 
     return (
       <React.Fragment>
-        <p>Showing {count} movies in the database.</p>
-        {/* div.row>div.col-2+div.col */}
+        <p>Showing {movies.length} movies in the database.</p>
         <div className='row'>
           <div className='col-2'>
             <ListGroup
@@ -139,7 +142,7 @@ class Movies extends Component {
               </tbody>
             </table>
             <Pagination
-              itemsCount={count}
+              itemsCount={filteredMovies.length}
               pageSize={pageSize}
               currentPage={currentPage}
               onPageChange={this.handlePageChange}
@@ -269,6 +272,7 @@ const ListGroup = ({
   );
 };
 
+// be careful with the spelling
 ListGroup.defaultProps = {
   textProperty: "name",
   valueProperty: "_id",
