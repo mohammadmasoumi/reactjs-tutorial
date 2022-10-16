@@ -1,4 +1,4 @@
-# Sorting - Raising The Sort Event
+# Filtering - Destructuring Arguments
 
 ## Dependencies
 
