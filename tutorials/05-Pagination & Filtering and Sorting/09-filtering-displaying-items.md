@@ -73,8 +73,8 @@ class Movies extends Component {
     this.setState({ currentPage: page });
   };
 
-  handleItemSelect = (item) => {
-    console.log("handle");
+  handleItemSelect = (genre) => {
+    console.log(genre);
   };
 
   render() {
@@ -227,10 +227,29 @@ export function paginate(items, pageNumber, pageSize) {
 
 ```jsx
 import React from "react";
+import _ from "lodash";
 
 // component interface
-const ListGroup = () => {
-  return null;
+const ListGroup = ({ items, textProperty, valueProperty, onItemSelect }) => {
+  // ul.list-group>li.list-group-item
+
+  return (
+    <ul className='list-group'>
+      {items.map((item) => (
+        <li
+          key={_.get(item, valueProperty)}
+          onClick={() => onItemSelect(item)}
+          className='list-group-item'>
+          {_.get(item, textProperty)}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+ListGroup.defaultProps = {
+  textProperty: "name",
+  valueProperty: "_id",
 };
 
 export default ListGroup;
