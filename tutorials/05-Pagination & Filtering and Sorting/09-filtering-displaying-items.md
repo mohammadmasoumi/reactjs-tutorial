@@ -1,4 +1,4 @@
-# Pagination Type Checking With prop-types
+# Filtering - Displaying Items
 
 ## Dependencies
 

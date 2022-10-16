@@ -1,4 +1,4 @@
-# Movie Component
+# Movies Component
 
 ## App
 

@@ -1,4 +1,4 @@
-# Pagination Displaying Pages
+# Pagination - Displaying Pages
 
 ## Dependencies
 

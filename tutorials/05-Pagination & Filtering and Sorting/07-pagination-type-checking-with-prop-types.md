@@ -1,4 +1,4 @@
-# Pagination Type Checking With prop-types
+# Pagination - Type Checking With `prop-types`
 
 ## Dependencies
 

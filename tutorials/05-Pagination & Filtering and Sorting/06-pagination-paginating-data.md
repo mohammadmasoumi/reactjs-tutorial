@@ -1,4 +1,4 @@
-# Pagination Paginating data
+# Pagination - Paginating data
 
 ## Dependencies
 
