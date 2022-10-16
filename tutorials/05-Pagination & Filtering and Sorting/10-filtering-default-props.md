@@ -28,7 +28,7 @@ class App extends Component {
 export default App;
 ```
 
-## Movie.jsx
+## Movies
 
 ```jsx
 import React, { Component } from "react";
@@ -186,7 +186,7 @@ Pagination.propTypes = {
 export default Pagination;
 ```
 
-## utils/paginate.jsx
+## paginate
 
 ```jsx
 import _ from "lodash";

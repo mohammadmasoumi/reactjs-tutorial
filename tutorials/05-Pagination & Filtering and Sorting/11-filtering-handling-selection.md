@@ -7,7 +7,7 @@ npm i lodash
 npm i prop-types
 ```
 
-## App.jsx
+## App
 
 ```jsx
 import React, { Component } from "react";
@@ -28,7 +28,7 @@ class App extends Component {
 export default App;
 ```
 
-## Movie.jsx
+## Movies
 
 ```jsx
 import React, { Component } from "react";
@@ -186,7 +186,7 @@ Pagination.propTypes = {
 export default Pagination;
 ```
 
-## utils/paginate.jsx
+## Paginate
 
 ```jsx
 import _ from "lodash";
@@ -202,14 +202,4 @@ export function paginate(items, pageNumber, pageSize) {
 
   return _(items).slice(startIndex).take(pageSize).value();
 }
-```
-
-## Type Checking
-
-```txt
-react-jsx-dev-runtime.development.js:87 Warning: Failed prop type: Invalid prop `itemsCount` of type `string` supplied to `Pagination`, expected `number`.
-    at Pagination (http://localhost:3000/static/js/bundle.js:187:5)
-    at Movies (http://localhost:3000/main.95668ece292e682ebe0e.hot-update.js:33:5)
-    at main
-    at App (http://localhost:3000/static/js/bundle.js:28:1)
 ```

@@ -189,7 +189,7 @@ Pagination.propTypes = {
 export default Pagination;
 ```
 
-## Paginate
+## paginate
 
 ```jsx
 import _ from "lodash";

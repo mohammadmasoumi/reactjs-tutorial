@@ -34,15 +34,26 @@ export default App;
 import React, { Component } from "react";
 import Liked from "./commons/liked";
 import Pagination from "./commons/pagination";
+import ListGroup from "./commons/listgroup";
 import { getMovies } from "../services/fakeMovieService";
+import { getGenres } from "../services/fakeGenreService";
 import { paginate } from "../utils/paginate";
 
 class Movies extends Component {
   state = {
-    movies: getMovies(),
+    movies: [],
+    // Why empty list?
+    genres: [],
     currentPage: 1,
     pageSize: 4,
   };
+
+  componentDidMount() {
+    this.setState({
+      movies: getMovies(),
+      genres: getGenres(),
+    });
+  }
 
   handleDelete = (movie) => {
     const movies = this.state.movies.filter((m) => m._id !== movie._id);
@@ -62,9 +73,19 @@ class Movies extends Component {
     this.setState({ currentPage: page });
   };
 
+  handleItemSelect = (genre) => {
+    this.setState({ selectedGenre: genre });
+  };
+
   render() {
     const { length: count } = this.state.movies;
-    const { movies: allMovies, pageSize, currentPage } = this.state;
+    const {
+      movies: allMovies,
+      genres,
+      pageSize,
+      currentPage,
+      selectedGenre,
+    } = this.state;
     const movies = paginate(allMovies, currentPage, pageSize);
 
     if (count === 0) return <p>There are no movies in the database.</p>;
@@ -72,47 +93,59 @@ class Movies extends Component {
     return (
       <React.Fragment>
         <p>Showing {count} movies in the database.</p>
-        <table className='table'>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Genre</th>
-              <th>Stock</th>
-              <th>Rate</th>
-              <th />
-              <th />
-            </tr>
-          </thead>
-          <tbody>
-            {movies.map((movie) => (
-              <tr key={movie._id}>
-                <td>{movie.title}</td>
-                <td>{movie.genre.name}</td>
-                <td>{movie.numberInStock}</td>
-                <td>{movie.dailyRentalRate}</td>
-                <td>
-                  <Liked
-                    item={movie}
-                    onLike={this.handleLike}
-                  />
-                </td>
-                <td>
-                  <button
-                    onClick={() => this.handleDelete(movie)}
-                    className='btn btn-danger btn-sm'>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <Pagination
-          itemsCount={"abc"}
-          pageSize={pageSize}
-          currentPage={currentPage}
-          onPageChange={this.handlePageChange}
-        />
+        {/* div.row>div.col-2+div.col */}
+        <div className='row'>
+          <div className='col-2'>
+            <ListGroup
+              items={genres}
+              selectedItem={selectedGenre}
+              onItemSelect={this.handleItemSelect}
+            />
+          </div>
+          <div className='col'>
+            <table className='table'>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Genre</th>
+                  <th>Stock</th>
+                  <th>Rate</th>
+                  <th />
+                  <th />
+                </tr>
+              </thead>
+              <tbody>
+                {movies.map((movie) => (
+                  <tr key={movie._id}>
+                    <td>{movie.title}</td>
+                    <td>{movie.genre.name}</td>
+                    <td>{movie.numberInStock}</td>
+                    <td>{movie.dailyRentalRate}</td>
+                    <td>
+                      <Liked
+                        item={movie}
+                        onLike={this.handleLike}
+                      />
+                    </td>
+                    <td>
+                      <button
+                        onClick={() => this.handleDelete(movie)}
+                        className='btn btn-danger btn-sm'>
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <Pagination
+              itemsCount={count}
+              pageSize={pageSize}
+              currentPage={currentPage}
+              onPageChange={this.handlePageChange}
+            />
+          </div>
+        </div>
       </React.Fragment>
     );
   }
@@ -186,7 +219,7 @@ Pagination.propTypes = {
 export default Pagination;
 ```
 
-## utils/paginate.jsx
+## paginate
 
 ```jsx
 import _ from "lodash";
@@ -204,12 +237,42 @@ export function paginate(items, pageNumber, pageSize) {
 }
 ```
 
-## Type Checking
+## ListGroup
 
-```txt
-react-jsx-dev-runtime.development.js:87 Warning: Failed prop type: Invalid prop `itemsCount` of type `string` supplied to `Pagination`, expected `number`.
-    at Pagination (http://localhost:3000/static/js/bundle.js:187:5)
-    at Movies (http://localhost:3000/main.95668ece292e682ebe0e.hot-update.js:33:5)
-    at main
-    at App (http://localhost:3000/static/js/bundle.js:28:1)
+```jsx
+import React from "react";
+import _ from "lodash";
+
+// component interface
+const ListGroup = ({
+  items,
+  textProperty,
+  valueProperty,
+  selectedItem,
+  onItemSelect,
+}) => {
+  // ul.list-group>li.list-group-item
+
+  return (
+    <ul className='list-group'>
+      {items.map((item) => (
+        <li
+          key={_.get(item, valueProperty)}
+          onClick={() => onItemSelect(item)}
+          className={
+            item === selectedItem ? "list-group-item active" : "list-group-item"
+          }>
+          {_.get(item, textProperty)}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+ListGroup.defaultProps = {
+  textProperty: "name",
+  valueProperty: "_id",
+};
+
+export default ListGroup;
 ```
