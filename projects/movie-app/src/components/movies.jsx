@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import _ from "lodash";
 import Pagination from "./commons/pagination";
 import ListGroup from "./commons/listgroup";
 import MoviesTable from "./moviesTable";
@@ -10,6 +11,7 @@ class Movies extends Component {
   state = {
     movies: [],
     genres: [],
+    sortColumn: { path: "title", order: "asc" },
     currentPage: 1,
     pageSize: 4,
   };
@@ -39,7 +41,16 @@ class Movies extends Component {
   };
 
   handleSort = (path) => {
-    console.log(path);
+    const { sortColumn } = this.state;
+    const order =
+      sortColumn.order === "asc" && path === sortColumn.path ? "desc" : "asc";
+
+    this.setState({
+      sortColumn: {
+        path,
+        order,
+      },
+    });
   };
 
   // Pagination handlers
@@ -56,6 +67,7 @@ class Movies extends Component {
       movies: allMovies,
       genres,
       pageSize,
+      sortColumn,
       currentPage,
       selectedGenre,
     } = this.state;
@@ -65,7 +77,13 @@ class Movies extends Component {
         ? allMovies.filter((movie) => movie.genre._id === selectedGenre._id)
         : allMovies;
 
-    const movies = paginate(filteredMovies, currentPage, pageSize);
+    const sorted = _.orderBy(
+      filteredMovies,
+      [sortColumn.path],
+      [sortColumn.order]
+    );
+
+    const movies = paginate(sorted, currentPage, pageSize);
 
     if (movies.length === 0) return <p>There are no movies in the database.</p>;
 
