@@ -9,8 +9,6 @@ const ListGroup = ({
   selectedItem,
   onItemSelect,
 }) => {
-  // ul.list-group>li.list-group-item
-
   return (
     <ul className='list-group'>
       {items.map((item) => (
