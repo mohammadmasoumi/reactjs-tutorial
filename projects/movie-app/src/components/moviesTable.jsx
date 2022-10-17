@@ -6,16 +6,11 @@ const MoviesTable = ({ movies, sortColumn, onLike, onDelete, onSort }) => {
     cursor: "pointer",
   };
 
-  handleSort = (path) => {
+  const raiseSort = (path) => {
     const order =
       sortColumn.order === "asc" && path === sortColumn.path ? "desc" : "asc";
 
-    this.setState({
-      sortColumn: {
-        path,
-        order,
-      },
-    });
+    onSort({ path, order });
   };
 
   return (
@@ -24,22 +19,22 @@ const MoviesTable = ({ movies, sortColumn, onLike, onDelete, onSort }) => {
         <tr>
           <th
             style={styles}
-            onClick={() => onSort("title")}>
+            onClick={() => raiseSort("title")}>
             Title
           </th>
           <th
             style={styles}
-            onClick={() => onSort("genre.name")}>
+            onClick={() => raiseSort("genre.name")}>
             Genre
           </th>
           <th
             style={styles}
-            onClick={() => onSort("numberInStock")}>
+            onClick={() => raiseSort("numberInStock")}>
             Stock
           </th>
           <th
             style={styles}
-            onClick={() => onSort("dailyRentalRate")}>
+            onClick={() => raiseSort("dailyRentalRate")}>
             Rate
           </th>
           <th />
