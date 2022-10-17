@@ -1,10 +1,23 @@
 import React from "react";
 import Liked from "./commons/liked";
 
-const MoviesTable = ({ movies, onLike, onDelete, onSort }) => {
+const MoviesTable = ({ movies, sortColumn, onLike, onDelete, onSort }) => {
   const styles = {
     cursor: "pointer",
   };
+
+  handleSort = (path) => {
+    const order =
+      sortColumn.order === "asc" && path === sortColumn.path ? "desc" : "asc";
+
+    this.setState({
+      sortColumn: {
+        path,
+        order,
+      },
+    });
+  };
+
   return (
     <table className='table'>
       <thead>
