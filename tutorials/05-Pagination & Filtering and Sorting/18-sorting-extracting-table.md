@@ -1,10 +1,4 @@
-# Sorting - Moving Responsibilities
-
-- sorting - moving responsibilities
-- sorting - extracting table hader
-- sorting - extracting table body
-- sorting - redering cell content
-- sorting - unique keys
+# Sorting - Extracting Table
 
 ## App
 

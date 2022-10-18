@@ -1,10 +1,4 @@
-# Sorting - Moving Responsibilities
-
-- sorting - moving responsibilities
-- sorting - extracting table hader
-- sorting - extracting table body
-- sorting - redering cell content
-- sorting - unique keys
+# Sorting - Extracting a Method
 
 ## App
 
@@ -199,13 +193,39 @@ const MoviesTable = ({ movies, sortColumn, onLike, onDelete, onSort }) => {
 export default MoviesTable;
 ```
 
+## Table
+
+```jsx
+import React from "react";
+import TableBody from "./tableBody";
+import TableHeader from "./tableHeader";
+
+const Table = ({ data, columns, sortColumn, onSort }) => {
+  return (
+    <table className='table'>
+      <TableHeader
+        columns={columns}
+        sortColumn={sortColumn}
+        onSort={onSort}
+      />
+      <TableBody
+        data={data}
+        columns={columns}
+      />
+    </table>
+  );
+};
+
+export default Table;
+```
+
 ## TableBody
 
 ```jsx
 import React from "react";
 import _ from "lodash";
 
-const TableBody = ({ items, columns, valueProperty }) => {
+const TableBody = ({ data, columns, valueProperty }) => {
   const renderCell = (item, column) => {
     return _.get(item, column.path) || column.content(item);
   };
@@ -216,7 +236,7 @@ const TableBody = ({ items, columns, valueProperty }) => {
 
   return (
     <tbody>
-      {items.map((item) => (
+      {data.map((item) => (
         <tr key={_.get(item, valueProperty)}>
           {columns.map((column) => (
             <td key={createKey(item, column)}>{renderCell(item, column)}</td>
@@ -238,36 +258,47 @@ export default TableBody;
 
 ```jsx
 import React from "react";
+import Liked from "./commons/liked";
+import Table from "./commons/table";
 
-const TableHeader = ({ columns, sortColumn, onSort }) => {
-  const styles = {
-    cursor: "pointer",
-  };
-
-  const raiseSort = (path) => {
-    const order =
-      sortColumn.order === "asc" && path === sortColumn.path ? "desc" : "asc";
-
-    onSort({ path, order });
-  };
+const MoviesTable = ({ movies, sortColumn, onLike, onDelete, onSort }) => {
+  const columns = [
+    { path: "title", label: "Title" },
+    { path: "genre.name", label: "Genre" },
+    { path: "numberInStock", label: "Stock" },
+    { path: "dailyRentalRate", label: "Rate" },
+    {
+      key: "like",
+      content: (movie) => (
+        <Liked
+          item={movie}
+          onLike={onLike}
+        />
+      ),
+    },
+    {
+      key: "delete",
+      content: (movie) => (
+        <button
+          onClick={() => onDelete(movie)}
+          className='btn btn-danger btn-sm'>
+          Delete
+        </button>
+      ),
+    },
+  ];
 
   return (
-    <thead>
-      <tr>
-        {columns.map((column) => (
-          <th
-            key={column.label || column.key}
-            style={styles}
-            onClick={() => raiseSort(column.path)}>
-            {column.label}
-          </th>
-        ))}
-      </tr>
-    </thead>
+    <Table
+      data={movies}
+      columns={columns}
+      sortColumn={sortColumn}
+      onSort={onSort}
+    />
   );
 };
 
-export default TableHeader;
+export default MoviesTable;
 ```
 
 ## Pagination

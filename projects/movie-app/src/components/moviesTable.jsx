@@ -1,10 +1,9 @@
 import React from "react";
 import Liked from "./commons/liked";
-import TableHeader from "./commons/tableHeader";
-import TableBody from "./commons/tableBody";
+import Table from "./commons/table";
 
 const MoviesTable = ({ movies, sortColumn, onLike, onDelete, onSort }) => {
-  const colums = [
+  const columns = [
     { path: "title", label: "Title" },
     { path: "genre.name", label: "Genre" },
     { path: "numberInStock", label: "Stock" },
@@ -31,18 +30,12 @@ const MoviesTable = ({ movies, sortColumn, onLike, onDelete, onSort }) => {
   ];
 
   return (
-    <table className='table'>
-      <TableHeader
-        columns={colums}
-        sortColumn={sortColumn}
-        onSort={onSort}
-      />
-      <TableBody
-        valueProperty='_id'
-        items={movies}
-        columns={colums}
-      />
-    </table>
+    <Table
+      data={movies}
+      columns={columns}
+      sortColumn={sortColumn}
+      onSort={onSort}
+    />
   );
 };
 
