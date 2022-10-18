@@ -2,10 +2,6 @@ import React from "react";
 import _ from "lodash";
 
 const TableHeader = ({ columns, sortColumn, onSort }) => {
-  const styles = {
-    cursor: "pointer",
-  };
-
   const raiseSort = (path) => {
     const order =
       sortColumn.order === "asc" && path === sortColumn.path ? "desc" : "asc";
@@ -30,7 +26,7 @@ const TableHeader = ({ columns, sortColumn, onSort }) => {
         {columns.map((column) => (
           <th
             key={column.label || column.key}
-            style={styles}
+            className='clickable'
             onClick={() => raiseSort(column.path)}>
             {column.label}
             {renderSortIcon(column)}
