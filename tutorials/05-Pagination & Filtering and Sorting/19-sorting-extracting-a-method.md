@@ -424,3 +424,5 @@ ListGroup.defaultProps = {
 
 export default ListGroup;
 ```
+
+![alt movie-app](./resources/movie-app.png)
