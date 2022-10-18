@@ -1,11 +1,10 @@
 # Sorting - Moving Responsibilities
 
-## Dependencies
-
-```bash
-npm i lodash
-npm i prop-types
-```
+- sorting - moving responsibilities
+- sorting - extracting table hader
+- sorting - extracting table body
+- sorting - redering cell content
+- sorting - unique keys
 
 ## App
 
@@ -151,8 +150,96 @@ export default Movies;
 ```jsx
 import React from "react";
 import Liked from "./commons/liked";
+import TableHeader from "./commons/tableHeader";
+import TableBody from "./commons/tableBody";
 
 const MoviesTable = ({ movies, sortColumn, onLike, onDelete, onSort }) => {
+  const colums = [
+    { path: "title", label: "Title" },
+    { path: "genre.name", label: "Genre" },
+    { path: "numberInStock", label: "Stock" },
+    { path: "dailyRentalRate", label: "Rate" },
+    {
+      key: "like",
+      content: (movie) => (
+        <Liked
+          item={movie}
+          onLike={onLike}
+        />
+      ),
+    },
+    {
+      key: "delete",
+      content: (movie) => (
+        <button
+          onClick={() => onDelete(movie)}
+          className='btn btn-danger btn-sm'>
+          Delete
+        </button>
+      ),
+    },
+  ];
+
+  return (
+    <table className='table'>
+      <TableHeader
+        columns={colums}
+        sortColumn={sortColumn}
+        onSort={onSort}
+      />
+      <TableBody
+        valueProperty='_id'
+        items={movies}
+        columns={colums}
+      />
+    </table>
+  );
+};
+
+export default MoviesTable;
+```
+
+## TableBody
+
+```jsx
+import React from "react";
+import _ from "lodash";
+
+const TableBody = ({ items, columns, valueProperty }) => {
+  const renderCell = (item, column) => {
+    return _.get(item, column.path) || column.content(item);
+  };
+
+  const createKey = (item, column) => {
+    return _.get(item, valueProperty) + (column.path + column.key);
+  };
+
+  return (
+    <tbody>
+      {items.map((item) => (
+        <tr key={_.get(item, valueProperty)}>
+          {columns.map((column) => (
+            <td key={createKey(item, column)}>{renderCell(item, column)}</td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  );
+};
+
+TableBody.defaultProps = {
+  valueProperty: "_id",
+};
+
+export default TableBody;
+```
+
+## TableHeader
+
+```jsx
+import React from "react";
+
+const TableHeader = ({ columns, sortColumn, onSort }) => {
   const styles = {
     cursor: "pointer",
   };
@@ -165,61 +252,22 @@ const MoviesTable = ({ movies, sortColumn, onLike, onDelete, onSort }) => {
   };
 
   return (
-    <table className='table'>
-      <thead>
-        <tr>
+    <thead>
+      <tr>
+        {columns.map((column) => (
           <th
+            key={column.label || column.key}
             style={styles}
-            onClick={() => raiseSort("title")}>
-            Title
+            onClick={() => raiseSort(column.path)}>
+            {column.label}
           </th>
-          <th
-            style={styles}
-            onClick={() => raiseSort("genre.name")}>
-            Genre
-          </th>
-          <th
-            style={styles}
-            onClick={() => raiseSort("numberInStock")}>
-            Stock
-          </th>
-          <th
-            style={styles}
-            onClick={() => raiseSort("dailyRentalRate")}>
-            Rate
-          </th>
-          <th />
-          <th />
-        </tr>
-      </thead>
-      <tbody>
-        {movies.map((movie) => (
-          <tr key={movie._id}>
-            <td>{movie.title}</td>
-            <td>{movie.genre.name}</td>
-            <td>{movie.numberInStock}</td>
-            <td>{movie.dailyRentalRate}</td>
-            <td>
-              <Liked
-                item={movie}
-                onLike={onLike}
-              />
-            </td>
-            <td>
-              <button
-                onClick={() => onDelete(movie)}
-                className='btn btn-danger btn-sm'>
-                Delete
-              </button>
-            </td>
-          </tr>
         ))}
-      </tbody>
-    </table>
+      </tr>
+    </thead>
   );
 };
 
-export default MoviesTable;
+export default TableHeader;
 ```
 
 ## Pagination

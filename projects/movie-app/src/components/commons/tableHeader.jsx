@@ -1,10 +1,5 @@
 import React from "react";
 
-// component interface
-// columns
-// sortColumn
-// onSort
-
 const TableHeader = ({ columns, sortColumn, onSort }) => {
   const styles = {
     cursor: "pointer",
