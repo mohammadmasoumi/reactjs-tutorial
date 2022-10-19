@@ -1,3 +1,12 @@
+# Default Routing
+
+## App
+
+Adding a **"No Match"** Route
+
+The **"\*"** has special meaning here. It will match only when no other routes do.
+
+```jsx
 import React, { Component } from "react";
 import { Route, Routes } from "react-router-dom";
 import NavBar from "./components/navbar";
@@ -44,3 +53,4 @@ class App extends Component {
 }
 
 export default App;
+```
