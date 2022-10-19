@@ -14,6 +14,8 @@ create-react-app router-app
 
 ## Dependencies
 
+- `react-router-dom@6.4.2`
+
 ```bash
 npm i react-router-dom
 ```
