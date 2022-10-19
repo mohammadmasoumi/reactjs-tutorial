@@ -2,6 +2,8 @@
 
 ## App.js
 
+First things first, we want to connect your app to the browser's URL: import `BrowserRouter` and render it around your whole app.
+
 - What component should be rendered with provided URL pattern
 - Smart routing - No ordering
 - One component
@@ -82,7 +84,9 @@ reportWebVitals();
 
 ## Caveat
 
-> `[Home] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>`
+- `Routers` take no children other than `Route` and `React.Fragment`
+
+  `[Home]` is not a `<Route>` component. All component children of `<Routes>` must be a `<Route>` or `<React.Fragment>`
 
 ```jsx
 <Routes>
@@ -92,5 +96,32 @@ reportWebVitals();
   >
     <Home />
   </Route>
+</Routes>
+```
+
+- No default route
+
+  No routes matched location `"/posts/2018/06"`
+
+- No `/` is needed at start of the URL
+
+```jsx
+<Routes>
+  <Route
+    path='/'
+    element={<Home />}
+  />
+  <Route
+    path='products'
+    element={<Products />}
+  />
+  <Route
+    path='posts'
+    element={<Posts />}
+  />
+  <Route
+    path='admin'
+    element={<Dashboard />}
+  />
 </Routes>
 ```

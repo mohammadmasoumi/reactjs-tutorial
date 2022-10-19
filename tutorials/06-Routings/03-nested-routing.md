@@ -1,3 +1,8 @@
+# Nested Routing
+
+## App.js
+
+```jsx
 import React, { Component } from "react";
 import { Route, Routes } from "react-router-dom";
 import NavBar from "./components/navbar";
@@ -40,3 +45,23 @@ class App extends Component {
 }
 
 export default App;
+```
+
+## Home
+
+```jsx
+import React, { Fragment } from "react";
+import { Outlet } from "react-router-dom";
+
+const Home = () => {
+  return (
+    <Fragment>
+      <h1>Home</h1>
+      {/* Load child router in nested routers */}
+      <Outlet />
+    </Fragment>
+  );
+};
+
+export default Home;
+```
