@@ -1,6 +1,6 @@
 # Adding Routing
 
-## App
+## App.js
 
 - What component should be rendered with provided URL pattern
 - Smart routing - No ordering
@@ -78,4 +78,19 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+```
+
+## Caveat
+
+> `[Home] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>`
+
+```jsx
+<Routes>
+  <Route
+    path='/'
+    //   element={<Home />}
+  >
+    <Home />
+  </Route>
+</Routes>
 ```
