@@ -8,9 +8,15 @@ create-react-app router-app
 
 ## Extensions
 
-- Prettier - Code formatter
-- Simple React Snippets
-- Auto Import - ES6, TS, JSX, TSX
+- VS Code
+
+  - Prettier - Code formatter
+  - Simple React Snippets
+  - Auto Import - ES6, TS, JSX, TSX
+
+- Chrome
+
+  - React Developer Tools
 
 ## Dependencies
 
