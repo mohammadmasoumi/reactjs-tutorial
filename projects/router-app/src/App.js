@@ -22,7 +22,11 @@ class App extends Component {
             />
             <Route
               path='/products'
-              element={<Products customProp='product_id' />}
+              element={<Products />}
+            />
+            <Route
+              path='/products/:productId'
+              element={<ProductDetails />}
             />
             <Route
               path='/posts'

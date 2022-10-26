@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 class Products extends Component {
   state = {
@@ -11,7 +11,6 @@ class Products extends Component {
   };
 
   render() {
-    console.log("Passed props:", this.props.customProp);
     return (
       <div>
         <h1>Products</h1>
@@ -22,6 +21,7 @@ class Products extends Component {
             </li>
           ))}
         </ul>
+        <Outlet />
       </div>
     );
   }
