@@ -7,6 +7,7 @@ import Home from "./components/home";
 import Dashboard from "./components/admin/dashboard";
 import ProductDetails from "./components/productDetails";
 import NotFound from "./components/notFound";
+import ErrorPage from "./components/errorPage";
 import "./App.css";
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
             <Route
               path='/'
               element={<Home />}
+              errorElement={<ErrorPage />}
             />
             <Route
               path='/products'
